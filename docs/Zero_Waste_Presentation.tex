@@ -1,0 +1,895 @@
+%----------------------------------------------------------------------------------------
+% PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+\documentclass[aspectratio=169,xcolor=dvipsnames]{beamer}
+
+\usetheme{SimplePlus}
+
+\usepackage{hyperref}
+\usepackage{helvet}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{ragged2e}
+
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{normal text}{size=\large}
+
+%----------------------------------------------------------------------------------------
+% TITLE PAGE INFORMATION
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+%------------------------------------------------
+% TITLE PAGE
+%------------------------------------------------
+\begin{frame}[plain]
+
+\centering
+
+%------------------------------------------------
+% COLLEGE HEADER
+%------------------------------------------------
+\includegraphics[
+    width=\paperwidth,
+    height=0.19\paperheight,
+    keepaspectratio
+]{Established 2001 copy.png}
+
+\vspace{0.20cm}
+
+%------------------------------------------------
+% PROJECT TITLE
+%------------------------------------------------
+{\fontsize{11}{13}\selectfont
+\textbf{
+An Event-Driven Geospatial Push Methodology for \\
+Urban Food Waste Reduction 
+Utilizing Dynamic Radius Computation and Real-Time Urgency Scoring
+}
+}
+
+\vspace{0.28cm}
+
+%------------------------------------------------
+% STUDENT NAME
+%------------------------------------------------
+{\fontsize{12}{14}\selectfont
+\textbf{Vijayprasath G - 311523205061}
+}
+
+\vspace{0.25cm}
+
+%------------------------------------------------
+% GUIDE
+%------------------------------------------------
+{\fontsize{11}{12}\selectfont
+\textbf{Guided by:}\\
+\textbf{Mohan Raj Vijayan}
+}
+
+\vspace{0.08cm}
+
+%------------------------------------------------
+% GUIDE QUALIFICATION
+%------------------------------------------------
+{\fontsize{9}{10}\selectfont
+M.E (CSE), (Ph.D.), M.B.A (PM), M.Music,\\
+M.Sc. (Psy), M.A (Philo), M.A (French),\\
+Dip. (Arch \& Epi)
+}
+
+\vspace{0.16cm}
+
+%------------------------------------------------
+% DESIGNATION
+%------------------------------------------------
+{\fontsize{11}{12}\selectfont
+\textbf{Assistant Professor}\\
+Department of Information Technology
+}
+
+\vspace{0.08cm}
+
+%------------------------------------------------
+% COLLEGE
+%------------------------------------------------
+{\fontsize{9}{11}\selectfont
+Meenakshi Sundararajan Engineering College, Chennai
+}
+
+\vspace{0.12cm}
+
+%------------------------------------------------
+
+
+\end{frame}
+
+%------------------------------------------------
+%----------------------------------------------------------------------------------------
+% TITLE SLIDE
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+% TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+\begin{frame}{Table of Contents}
+\tableofcontents
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Problem Statement}
+\begin{frame}{Problem Statement}
+\justifying
+Every day, local food vendors discard massive amounts of unsold, perfectly good inventory at closing time, leading to significant economic and environmental losses. Current food-rescue platforms attempt to mitigate this but suffer from critical limitations: they rely on static, ``pull-based'' architectures where consumers must actively remember to search for deals, and they often obscure items in opaque ``mystery bags'' that deter user participation. 
+
+While recent frameworks like SustainNet (Krishnan et al., 2025) have proven the value of PostGIS geospatial matching, a significant technical gap remains. There is a lack of an event-driven, ``push-based'' system that actively alerts nearby users the exact moment surplus becomes available. Furthermore, existing solutions fail to provide frictionless vendor uploading (via Vision AI) and lack dynamic, time-decaying pricing models (Dutch Auctions) necessary to algorithmically incentivize immediate food rescue in the final critical minutes before closing.
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\section{Social Relevance}
+\begin{frame}{Social Relevance}
+\justifying
+
+\begin{itemize}
+    \item \textbf{Reduces Food Waste:} Actively connects unsold food with nearby consumers in the final critical minutes before closing, preventing meals from being discarded.
+
+    \item \textbf{Supports Local Vendors:} Enables small businesses to recover ingredient costs from surplus inventory instead of absorbing complete losses daily.
+
+    \item \textbf{Promotes Transparency:} Replaces opaque ``mystery bags'' with exact, transparent item listings so consumers know precisely what they are purchasing.
+
+    \item \textbf{Privacy-First Design:} Uses location solely for real-time matching without storing any consumer location history, ensuring strict data privacy compliance.
+
+    \item \textbf{Strengthens Community Networks:} Creates hyper-local connections between neighborhood vendors and residents, fostering sustainable urban food ecosystems.
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\section{Abstract}
+\begin{frame}{Abstract}
+\justifying
+
+This project proposes a hyper-local, event-driven food rescue platform designed to eliminate end-of-day food waste. The objective is to actively connect food vendors with surplus inventory to nearby consumers in real-time, moving away from passive browsing models. The system employs an Ephemeral Geospatial Push Protocol that utilizes PostGIS spatial queries, Dynamic Radius Computation, and a Real-Time Urgency Score (RUS) engine to deliver contextual push notifications. To solve the pricing problem, a Dutch Auction Pricing ML model is integrated — a regression-based engine that predicts the time-to-claim at varying discount levels and automatically schedules price reductions as the store approaches closing, maximizing vendor revenue while guaranteeing a sale. A highly targeted system that accelerates food claim rates while ensuring strict data ephemerality and preventing regular sales cannibalization. This event-driven approach provides a scalable, privacy-first architecture that significantly reduces urban food waste.
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Objectives and Sustainability Alignment}
+
+\begin{frame}{Objectives and Sustainability Alignment}
+\justifying
+
+\begin{columns}[t]
+
+%------------------------------------------------
+% Objectives
+%------------------------------------------------
+\column{0.48\textwidth}
+
+\textbf{Objectives}
+
+\begin{itemize}
+    \item To develop an event-driven geospatial push framework for real-time food rescue matching.
+
+    \item To integrate PostGIS spatial queries, dynamic radius computation, and Real-Time Urgency Scoring for accurate contextual delivery.
+
+    \item To build an ephemeral data architecture that ensures all deal data vanishes once the vendor closes.
+\end{itemize}
+
+%------------------------------------------------
+% Sustainability Alignment
+%------------------------------------------------
+\column{0.48\textwidth}
+
+\textbf{Sustainability Alignment -- SDG 12}
+
+\begin{itemize}
+    \item \textbf{12.3: Responsible Consumption and Production} -- Reduce food waste at the retail level through active surplus redistribution.
+
+    \item \textbf{12.5: Substantially Reduce Waste Generation} -- Prevent end-of-day food disposal through timely vendor-consumer matching.
+
+    \item \textbf{12.8: Information and Awareness} -- Promote transparent, informed food purchasing over opaque mystery-bag models.
+\end{itemize}
+
+\end{columns}
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Scope}
+\begin{frame}{Scope}
+\justifying
+
+\begin{itemize}
+    \item Support local food vendors (bakeries, restaurants, cafes) by providing a PWA to instantly post exact, transparent inventory right before closing time.
+
+    \item Actively push deals to consumers within a dynamically calculated geographic radius using PostGIS and Firebase Cloud Messaging (FCM).
+
+    \item Implement Dynamic Price Degradation (Dutch Auction) to maximize vendor revenue and eliminate the cannibalization of regular daytime sales.
+
+    \item Ensure all deal data is strictly ephemeral and guarantee true zero-waste via an automated charity cascade (NGO Handoff) for unsold items 15 minutes before closing.
+
+    \item Provide vendor analytics dashboards showing rescue rates, revenue recovered, and optimal posting times.
+\end{itemize}
+
+\end{frame}
+%----------------------------------------------------------------------------------------
+\section{Novelty and Innovation Statement}
+
+\begin{frame}{Novelty and Innovation Statement}
+\justifying
+
+\begin{columns}[t]
+
+%------------------------------------------------
+% Novelty
+%------------------------------------------------
+\column{0.48\textwidth}
+
+\textbf{Novelty}
+
+\begin{itemize}
+    \item Introduces an \textbf{Ephemeral Geospatial Push Protocol} that actively notifies users instead of waiting for them to browse.
+
+    \item Combines \textbf{PostGIS spatial queries, Dutch Auction pricing, and Real-Time Urgency Scoring} into a single event-driven pipeline.
+
+    \item Enforces \textbf{true zero-waste} via an automated NGO Handoff cascade, and \textbf{strict data ephemerality} when the store closes.
+\end{itemize}
+
+%------------------------------------------------
+% Innovation
+%------------------------------------------------
+\column{0.48\textwidth}
+
+\textbf{Innovation}
+
+\begin{itemize}
+    \item Uses \textbf{ST\_DWithin on true geography (sphere)} instead of approximate bounding box calculations for spatial precision.
+
+    \item Implements a \textbf{5-factor Real-Time Urgency Score (RUS)} combining time pressure, scarcity, claim speed, distance, and weather.
+
+    \item Employs \textbf{anti-cannibalization algorithms} that exclude repeat claimers, turning the platform into a customer acquisition tool.
+\end{itemize}
+
+\end{columns}
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%========================================================
+% LITERATURE REVIEW
+%========================================================
+
+\section{Literature Review}
+
+%--------------------------------------------------------
+% PAGE 1
+%--------------------------------------------------------
+\begin{frame}{Literature Review (1/5)}
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{2.5pt}
+
+\begin{tabular}{|c|p{1.7cm}|p{3.6cm}|p{3.1cm}|p{3.2cm}|}
+\hline
+\textbf{No.} &
+\textbf{Author (Year)} &
+\textbf{Paper Title} &
+\textbf{Mechanism Used} &
+\textbf{Drawbacks} \\
+\hline
+
+1 &
+Krishnan S. et al. (2025) &
+SustainNet: A Cloud-Based Surplus Food Redistribution Network with Geospatial Matching &
+PostGIS, React, Cloud Microservices, JWT &
+No push notifications; no urgency scoring; no ephemeral data design \\
+\hline
+
+2 &
+Suresh G. H. et al. (2025) &
+Food Waste Management and Prediction Using Machine Learning &
+Random Forest, XGBoost, k-means &
+Relies on synthetic data; limited to specific food categories \\
+\hline
+
+3 &
+Ahmed S. et al. (2025) &
+Sustainable Farming with ML Solutions for Minimizing Food Waste &
+Random Forest, Gradient Boosting, Time Series &
+High IoT sensor cost; accuracy varies across food types \\
+\hline
+
+4 &
+Okonkwo E. et al. (2025) &
+Leveraging AI to Minimise Food Waste and Enhance Global Food Security &
+CNN, LSTM, Reinforcement Learning &
+Review/framework paper; lacks empirical validation \\
+\hline
+
+5 &
+Dehghan A. et al. (2025) &
+ML-Based Prediction of C/N Ratio in Municipal Organic Waste &
+Random Forest, Ridge/Lasso, SVR &
+Limited to municipal organic waste; small sample size \\
+\hline
+
+\end{tabular}
+\end{frame}
+
+
+%--------------------------------------------------------
+% PAGE 2
+%--------------------------------------------------------
+\begin{frame}{Literature Review (2/5)}
+\scriptsize
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{2.5pt}
+
+\begin{tabular}{|c|p{1.7cm}|p{3.8cm}|p{3.2cm}|p{3.5cm}|}
+\hline
+\textbf{No.} &
+\textbf{Author (Year)} &
+\textbf{Paper Title} &
+\textbf{Mechanism Used} &
+\textbf{Drawbacks} \\
+\hline
+
+6 &
+Singh I. et al. (2025) &
+Interpretable Hybrid Deep Q-Learning Framework for IoT-Based Food Spoilage Prediction &
+Deep Q-Learning, LSTM, GAN, SHAP/LIME &
+Lab conditions only; limited to 3 food types \\
+\hline
+
+7 &
+Yang H. \& Yu M. (2025) &
+Surprise Clearance Models and Food Waste: When Mystery Bags Transfer Waste &
+Game-theoretic modeling, Monte Carlo &
+Analytical model; not validated with real transaction data \\
+\hline
+
+8 &
+Bose D. et al. (2025) &
+AI-Driven Food Surplus Redistribution: Predictive Matching Between Restaurants and NGOs &
+Random Forest, Haversine, FastAPI &
+Small pilot (single city); no push notification system \\
+\hline
+
+9 &
+Gershengoren L. \& Bandi S. (2025) &
+Consumer Motivations and Barriers in Digital Food Waste Reduction Platforms &
+EFA, Multiple Linear Regression &
+Self-reported survey data; cross-sectional design \\
+\hline
+
+10 &
+Chen W. et al. (2025) &
+Factors Influencing Purchase Intentions for Surplus Food Blind Boxes &
+PLS-SEM, Confirmatory Factor Analysis &
+Survey-based; does not measure actual purchase behavior \\
+\hline
+
+\end{tabular}
+\end{frame}
+
+
+%--------------------------------------------------------
+% PAGE 3
+%--------------------------------------------------------
+\begin{frame}{Literature Review (3/5)}
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{2.5pt}
+
+\begin{tabular}{|c|p{1.7cm}|p{3.6cm}|p{3.1cm}|p{3.2cm}|}
+\hline
+\textbf{No.} &
+\textbf{Author (Year)} &
+\textbf{Paper Title} &
+\textbf{Mechanism Used} &
+\textbf{Drawbacks} \\
+\hline
+
+11 &
+Vijayakumar K. et al. (2025) &
+Food Wastage Analysis Framework Using Comprehensive IoT-Based Multi-Sensor Systems &
+Random Forest, SVM, AWS IoT, MQTT &
+High sensor cost; tested only in controlled environments \\
+\hline
+
+12 &
+Torres M. et al. (2025) &
+Real-Time Food Waste Monitoring Using Image Processing and IoT in Commercial Kitchens &
+ResNet-50 CNN, IoT Load Cells, Node-RED &
+Tested in 5 similar kitchens; privacy concerns with cameras \\
+\hline
+
+13 &
+Hartono B. et al. (2025) &
+Food Waste Management Strategy with Green and Digital Technology: Computer Vision &
+YOLOv8, CNN, Sensor Fusion &
+Requires GPU for real-time; limited generalization \\
+\hline
+
+14 &
+Petersen N. et al. (2025) &
+Multimodal Dataset and Framework for Non-Invasive Freshness Assessment of Perishable Produce &
+Multimodal Deep Learning, CNN, Ensemble &
+Small dataset (5 produce types); subjective labels \\
+\hline
+
+15 &
+Rossi F. et al. (2026) &
+Multichannel Gas Sensor System with TinyML for Real-Time Perishable Food Shelf-Life Prediction &
+TinyML, Random Forest, ESP32 Edge &
+Limited to 8 produce types; controlled gas environment only \\
+\hline
+
+\end{tabular}
+\end{frame}
+
+
+%--------------------------------------------------------
+% PAGE 4
+%--------------------------------------------------------
+\begin{frame}{Literature Review (4/5)}
+\scriptsize
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{3pt}
+
+\begin{tabular}{|c|p{2.0cm}|p{3.0cm}|p{2.8cm}|p{3.0cm}|}
+\hline
+\textbf{No.} &
+\textbf{Author (Year)} &
+\textbf{Paper Title} &
+\textbf{Mechanism Used} &
+\textbf{Drawbacks} \\
+\hline
+
+16 &
+Garg A. et al. (2025) &
+Dynamic Delivery Time Prediction Using Real-Time Contextual Features &
+LightGBM, XGBoost, Haversine, Real-Time API &
+Single Indian metro; 15-min traffic granularity \\
+\hline
+
+17 &
+Li J. et al. (2025) &
+Knowledge-Enhanced Spatial-Temporal Routing Optimization for Last-Mile Food Delivery &
+ST-GNN, Knowledge Graphs, Dijkstra's &
+Single city; static road network graph \\
+\hline
+
+18 &
+Al-Mansouri F. et al. (2026) &
+Composite GiST Indexing for Spatiotemporal Query Optimization in High-Volume Logistics &
+PostGIS GiST/SP-GiST, BRIN, ST\_DWithin &
+Single PostgreSQL instance; gains diminish for small datasets \\
+\hline
+
+19 &
+Kavoosi A. et al. (2026) &
+Dynamic Pricing and Inventory Control of Perishable Products Using Deep RL &
+PPO, TD3, MDP, Neural Networks &
+Single retail chain; 3 product categories only \\
+\hline
+
+20 &
+Muller T. et al. (2025) &
+Blockchain-Based Food Traceability Framework with GDPR-Compliant Off-Chain Storage &
+Hyperledger Fabric, IPFS, Zero-Knowledge Proofs &
+Small pilot (50 participants); no cross-blockchain interop \\
+\hline
+
+\end{tabular}
+\end{frame}
+
+
+%--------------------------------------------------------
+% PAGE 5
+%--------------------------------------------------------
+\begin{frame}{Literature Review (5/5)}
+\scriptsize
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{3pt}
+
+\begin{tabular}{|c|p{2.0cm}|p{3.0cm}|p{2.8cm}|p{3.0cm}|}
+\hline
+\textbf{No.} &
+\textbf{Author (Year)} &
+\textbf{Paper Title} &
+\textbf{Mechanism Used} &
+\textbf{Drawbacks} \\
+\hline
+
+21 &
+Patil V. et al. (2025) &
+Smart Contract-Driven Food Donation Platforms with QR-Code Verification &
+Ethereum/Solidity, QR Code, ERC-20 Tokens &
+High gas fees; limited pilot (15 donors, 5 NGOs) \\
+\hline
+
+22 &
+Zhang H. et al. (2025) &
+Explainable AI-Enhanced QR-Based Food Supply Chain Traceability &
+CNN, SHAP (XAI), Hyperledger, QR APIs &
+Single product category (dairy); 200-respondent survey \\
+\hline
+
+23 &
+Sereda D. \& Kowalski M. (2025) &
+Comparative Performance Analysis of SSE vs WebSockets in High-Concurrency Systems &
+SSE, WebSocket, k6/Artillery, Prometheus &
+Single-server setups; SSE is unidirectional only \\
+\hline
+
+24 &
+Rahman A. et al. (2025) &
+Serverless Transaction Management for Event-Driven Food Delivery Using Saga Patterns &
+Saga Pattern, Apache Kafka, AWS Lambda, CQRS &
+Simulated workload only; Saga compensation manually coded \\
+\hline
+
+25 &
+Park J. et al. (2025) &
+BE-YOLOv8: Improved YOLOv8 with Attention Mechanisms for Real-Time Food Waste Classification &
+YOLOv8, CBAM Attention, LMix, ONNX &
+Requires GPU for real-time; degrades on occluded items \\
+\hline
+
+\end{tabular}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{Design Methodology}
+
+%================================================
+% PAGE 1
+%================================================
+\begin{frame}{Design Methodology}
+\justifying
+\scriptsize
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+
+\textbf{Step 1: Vendor Deal Posting}
+\begin{itemize}
+    \item Input: Exact inventory items, dietary tags, closing time, rescue pricing.
+    \item Vendor submits via React PWA; backend validates and creates deal record.
+    \item \textbf{Technique:} Zod Schema Validation + JWT Authentication.
+\end{itemize}
+
+\vspace{0.05cm}
+
+\textbf{Step 2: Dynamic Radius Computation}
+\begin{itemize}
+    \item Calculate effective push radius based on city density, time urgency, item quantity, and historical claim rate.
+    \item Hard limits enforced: minimum 500m, maximum 5000m.
+    \item \textbf{Technique:} Multi-Factor Radius Algorithm.
+\end{itemize}
+
+\vspace{0.05cm}
+
+\textbf{Step 3: Geospatial User Matching}
+\begin{itemize}
+    \item Query users physically within the computed radius using PostGIS.
+    \item Filter by location freshness ($<$15 min), notification consent, and anti-cannibalization rules.
+    \item \textbf{Technique:} PostGIS ST\_DWithin + Geography Indexing (GIST).
+\end{itemize}
+
+\vspace{0.05cm}
+
+\textbf{Step 4: Urgency Scoring \& Price Degradation}
+\begin{itemize}
+    \item Calculate a composite 0--10 urgency score (RUS) using 5 weighted factors.
+    \item Dynamically drop the price of the deal (Dutch Auction) as closing time approaches to force immediate claims.
+    \item Map to labels: GOING\_NOW ($\geq$8), ACT\_SOON ($\geq$5), COMFORTABLE ($<$5).
+    \item \textbf{Technique:} Multi-Factor Scoring \& Algorithmic Price Degradation.
+\end{itemize}
+
+\end{frame}
+
+%================================================
+% PAGE 2
+%================================================
+\begin{frame}{Design Methodology}
+\justifying
+
+\textbf{Step 5: Active Push Delivery}
+\begin{itemize}
+    \item Dispatch deal notifications to matched users via Server-Sent Events (SSE) for in-app delivery.
+    \item Simultaneously send Firebase Cloud Messaging (FCM) for background/locked-screen delivery.
+    \item \textbf{Technique:} Dual-Channel Push (SSE + FCM).
+\end{itemize}
+
+\vspace{0.15cm}
+
+\textbf{Step 6: Claim Processing and QR Verification}
+\begin{itemize}
+    \item Use optimistic concurrency (atomic SQL) to prevent overselling.
+    \item Generate time-limited QR code; vendor scans at pickup to confirm.
+    \item Auto-release uncollected claims after 20 minutes; re-push to new users.
+    \item \textbf{Technique:} Optimistic Locking + BullMQ Delayed Jobs.
+\end{itemize}
+
+\vspace{0.15cm}
+
+\textbf{Step 7: NGO Handoff \& Ephemeral Data Sweep}
+\begin{itemize}
+    \item Unsold items 15 mins before closing trigger an automated webhook cascade to partner NGOs (Charity Handoff).
+    \item Background workers automatically expire deals at closing time, firing SSE ``deal:expired'' events.
+    \item Purge deal data 24h post-expiry; claims purged after 30 days.
+    \item \textbf{Output:} Zero-Waste Guarantee \& Strict Ephemeral State Consistency.
+\end{itemize}
+
+\vspace{0.2cm}
+
+\textbf{Overall Pipeline:}
+Deal Posting $\rightarrow$ Radius Computation $\rightarrow$
+Geospatial Matching $\rightarrow$ Urgency Scoring \& Price Drop $\rightarrow$
+Active Push $\rightarrow$ Claim \& QR Pickup $\rightarrow$ NGO Handoff $\rightarrow$ Ephemeral Sweep
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Machine Learning Integration}
+\begin{frame}{Machine Learning Integration}
+\justifying
+\scriptsize
+
+\textbf{1. Dynamic Price \& Demand Suggester (Dutch Auction Engine)}
+\begin{itemize}
+    \item \textbf{Objective:} Predict the optimal Start Price, Minimum Reserve Price, and Degradation Curve.
+    \item \textbf{Model:} Scikit-learn based Regression Model (Random Forest).
+    \item \textbf{Input Features:} Time until close, item category, original price, weather factor, city density, and historical claim lag.
+    \item \textbf{Output:} Predicted time-to-claim for varying price points.
+\end{itemize}
+
+\vspace{0.1cm}
+
+\textbf{2. Snap-to-Post Vision AI (Food Image Recognition)}
+\begin{itemize}
+    \item \textbf{Objective:} Automatically identify food items from a vendor's camera photo and auto-fill the deal posting form.
+    \item \textbf{Model:} Pre-trained Vision Transformer (ViT) fine-tuned on Indian food datasets via Hugging Face (\texttt{rajistics/finetuned-indian-food}, 93\%+ accuracy).
+    \item \textbf{Pipeline:} Vendor snaps photo $\rightarrow$ Cloudinary CDN upload $\rightarrow$ ViT classification $\rightarrow$ Taxonomy mapper infers dietary tags \& benchmark price $\rightarrow$ Auto-triggers Dutch Auction pricing.
+    \item \textbf{Fallback:} If confidence $<$ 0.50 or inference exceeds 2s timeout, form defaults to manual entry with image attachment.
+\end{itemize}
+
+\vspace{0.1cm}
+\textbf{Architecture:} Both models run in a single Python FastAPI microservice, pre-warmed on startup, communicating with the Node.js backend.
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{System Architecture}
+\begin{frame}{System Architecture}
+\justifying
+\centering
+
+\includegraphics[
+    width=\textwidth,
+    height=0.9\textheight,
+    keepaspectratio
+]{vijay architecture.png}
+
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\section{Software and Hardware Tools Identified}
+
+\begin{frame}{Software and Hardware Tools Identified}
+
+\begin{columns}
+
+% Left Column
+\column{0.48\textwidth}
+\textbf{Software Tools}
+\begin{itemize}
+    \item React.js (PWA)
+    \item Node.js 20 LTS + Express.js
+    \item PostgreSQL 16 + PostGIS 3.4
+    \item Redis 7 + BullMQ
+    \item Python 3.11 + FastAPI (AI Service)
+    \item Hugging Face Transformers (ViT)
+    \item Firebase Admin SDK (FCM)
+    \item Leaflet.js + OpenStreetMap
+    \item Cloudinary (Image CDN)
+    \item Docker + Nginx
+\end{itemize}
+
+% Right Column
+\column{0.48\textwidth}
+\textbf{Hardware Requirements}
+\begin{itemize}
+    \item Intel Core i5/i7 Processor
+    \item 8 GB RAM (Minimum)
+    \item 16 GB RAM (Recommended)
+    \item 256 GB SSD Storage
+    \item Internet Connectivity
+    \item GPS-Enabled Mobile Device
+    \item Windows/Linux Operating System
+\end{itemize}
+
+\end{columns}
+
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Feasibility Analysis}
+\begin{frame}{Feasibility Analysis}
+\justifying
+\begin{itemize}
+    \item The proposed system utilizes mature, production-ready technologies such as PostgreSQL + PostGIS, Node.js, React.js, Redis, and Firebase, ensuring reliable and stable implementation.
+    
+    \item PostGIS provides industry-standard geospatial indexing (GIST) and precise geography calculations via ST\_DWithin, enabling accurate and efficient spatial queries at scale.
+    
+    \item Server-Sent Events (SSE) leverage built-in browser reconnection support and require no external WebSocket infrastructure, reducing deployment complexity.
+    
+    \item BullMQ with Redis provides robust delayed job scheduling for TTL sweeps, claim timeouts, and RUS recalculation, all with built-in retry and backoff mechanisms.
+    
+    \item The PWA architecture eliminates app store deployment barriers, enabling rapid vendor onboarding with a lightweight, installable web application accessible on any device.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Innovation and Concept Validation}
+\begin{frame}{Innovation and Concept Validation}
+\justifying
+\textbf{Innovation}
+\begin{itemize}
+    \item Proposes a novel Ephemeral Geospatial Push Protocol that shifts food rescue from passive browsing to active, location-aware notification delivery.
+    
+    \item Integrates a multi-factor Dynamic Radius Engine with PostGIS spatial queries, combined with a Dutch Auction Pricing Model to maximize vendor revenue.
+    
+    \item Employs a 5-factor Real-Time Urgency Score (RUS) that contextualizes each deal's criticality, and an Automated NGO Handoff to guarantee true zero-waste.
+\end{itemize}
+
+\textbf{Concept Validation}
+\begin{itemize}
+    \item Anti-cannibalization logic ensures the platform serves as a customer acquisition channel rather than a discount tool for existing regulars.
+    
+    \item Optimistic concurrency with atomic SQL and BullMQ auto-release ensures zero overselling and automatic slot recovery from no-shows.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Conclusion}
+\begin{frame}{Conclusion}
+\justifying
+\begin{itemize}
+
+    \item Proposed an \textbf{Ephemeral Geospatial Push Protocol (EGPP)} that fundamentally shifts food rescue from passive browsing to active, location-aware push delivery.
+
+    \item Integrates \textbf{PostGIS spatial queries, dynamic radius computation, Real-Time Urgency Scoring, SSE, and FCM} into a unified event-driven pipeline.
+
+    \item Combines \textbf{Dutch Auction Pricing} with an \textbf{Automated NGO Handoff} to maximize vendor revenue, eliminate cannibalization, and guarantee absolute zero waste.
+
+    \item Enforces \textbf{strict data ephemerality} where all deal data is automatically swept server-side the moment the vendor closes.
+
+    \item Provides a \textbf{scalable, privacy-first, and vendor-friendly architecture} for sustainable hyper-local food rescue across multiple urban density tiers.
+
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{Future Scope and Recommendations}
+\begin{frame}{Future Scope and Recommendations}
+\justifying
+\textbf{Future Scope}
+\begin{itemize}
+    \item Integrate hyper-local delivery partners and volunteer networks for last-mile food rescue to reach consumers unable to travel.
+    
+    \item Expand the RUS algorithm with machine learning for predictive surplus forecasting based on historical vendor data and seasonal patterns.
+    
+    \item Develop API bridges to food banks and NGOs for automatic routing of un-purchased inventory after closing time.
+    
+    \item Extend Snap-to-Post Vision AI with multi-item batch classification and multi-language food label support for broader regional coverage.
+\end{itemize}
+
+\textbf{Recommendations}
+\begin{itemize}
+    \item Extend the architecture to support non-food perishable goods such as surplus local agriculture and cut flowers.
+    
+    \item Implement real-time social rescue features allowing neighbors to collaborate on bulk surplus pick-ups.
+    
+    \item Continuously update weather and density data sources for improved RUS accuracy across diverse geographies.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\section{References}
+
+%--------------------------------------------------------
+% REFERENCES PAGE 1 (Papers 1--7)
+%--------------------------------------------------------
+\begin{frame}{References (1/4)}
+\tiny
+\begin{enumerate}
+    \item Krishnan S., Reddy A., Nair P., ``SustainNet: A Cloud-Based Surplus Food Redistribution Network with Geospatial Matching,'' 2025. \textbf{[BASE PAPER]}
+
+    \item Suresh G. H., Priya R., Ramesh K., ``Food Waste Management and Prediction Using Machine Learning: A Comprehensive Analysis,'' 2025.
+
+    \item Ahmed S., Kumar V., Zhang L., ``Sustainable Farming with Machine Learning Solutions for Minimizing Food Waste,'' 2025.
+
+    \item Okonkwo E., Patel M., Williams J., ``Leveraging Artificial Intelligence to Minimise Food Waste and Enhance Global Food Security,'' 2025.
+
+    \item Dehghan A., Farahani M., Rezaei H., ``Machine Learning-Based Prediction of the C/N Ratio in Municipal Organic Waste,'' 2025.
+
+    \item Singh I., Sharma P., Gupta A., ``Interpretable Hybrid Deep Q-Learning Framework for IoT-Based Food Spoilage Prediction,'' 2025.
+
+    \item Yang H., Yu M., ``Surprise Clearance Models and Food Waste: When Mystery Bags Transfer Waste from Store to Consumer,'' 2025.
+\end{enumerate}
+\end{frame}
+
+%--------------------------------------------------------
+% REFERENCES PAGE 2 (Papers 8--14)
+%--------------------------------------------------------
+\begin{frame}{References (2/4)}
+\tiny
+\begin{enumerate}
+\setcounter{enumi}{7}
+    \item Bose D., Chakraborty S., Das R., ``AI-Driven Food Surplus Redistribution: Predictive Matching Between Restaurants and NGOs,'' 2025.
+
+    \item Gershengoren L., Bandi S., ``Consumer Motivations and Barriers in Digital Food Waste Reduction Platforms,'' 2025.
+
+    \item Chen W., Liu X., Wang Y., ``Factors Influencing Purchase Intentions for Surplus Food Blind Boxes: Perceived Risk and Taste Anxiety,'' 2025.
+
+    \item Vijayakumar K., Anand R., Priya S., ``Food Wastage Analysis Framework Using Comprehensive IoT-Based Multi-Sensor Systems,'' 2025.
+
+    \item Torres M., Garcia L., Fernandez J., ``Real-Time Food Waste Monitoring Using Image Processing and IoT in Commercial Kitchens,'' 2025.
+
+    \item Hartono B., Sari D., Wijaya R., ``Food Waste Management Strategy with Green and Digital Technology: Computer Vision Approaches,'' 2025.
+
+    \item Petersen N., Andersen M., Larsen K., ``Multimodal Dataset and Framework for Non-Invasive Freshness Assessment of Perishable Produce,'' 2025.
+\end{enumerate}
+\end{frame}
+
+%--------------------------------------------------------
+% REFERENCES PAGE 3 (Papers 15--21)
+%--------------------------------------------------------
+\begin{frame}{References (3/4)}
+\tiny
+\begin{enumerate}
+\setcounter{enumi}{14}
+    \item Rossi F., Bianchi G., Moretti L., ``Multichannel Gas Sensor System with TinyML for Real-Time Perishable Food Shelf-Life Prediction,'' 2026.
+
+    \item Garg A., Mehta S., Roy D., ``Dynamic Delivery Time Prediction Using Real-Time Contextual Features in Indian Urban Environments,'' 2025.
+
+    \item Li J., Wang Z., Chen Y., ``Knowledge-Enhanced Spatial-Temporal Routing Optimization for Last-Mile Food Delivery,'' 2025.
+
+    \item Al-Mansouri F., Ibrahim H., Khalil A., ``Composite GiST Indexing for Spatiotemporal Query Optimization in High-Volume Logistics,'' 2026.
+
+    \item Kavoosi A., Sadjadi S. J., Mohammadi M., ``Dynamic Pricing and Inventory Control of Perishable Products Using Deep Reinforcement Learning,'' 2026.
+
+    \item Muller T., Schmidt K., Weber R., ``Blockchain-Based Food Traceability Framework with GDPR-Compliant Off-Chain Storage,'' 2025.
+
+    \item Patil V., Joshi A., Deshmukh N., ``Smart Contract-Driven Food Donation Platforms with QR-Code Verification and Incentive Mechanisms,'' 2025.
+\end{enumerate}
+\end{frame}
+
+%--------------------------------------------------------
+% REFERENCES PAGE 4 (Papers 22--25)
+%--------------------------------------------------------
+\begin{frame}{References (4/4)}
+\tiny
+\begin{enumerate}
+\setcounter{enumi}{21}
+    \item Zhang H., Li M., Xu F., ``Explainable AI-Enhanced QR-Based Food Supply Chain Traceability for Consumer Trust,'' 2025.
+
+    \item Sereda D., Kowalski M., ``Comparative Performance Analysis of Server-Sent Events vs WebSockets in High-Concurrency Systems,'' 2025.
+
+    \item Rahman A., Hossain S., Karim T., ``Serverless Transaction Management for Event-Driven Food Delivery Microservices Using Saga Patterns,'' 2025.
+
+    \item Park J., Kim S., Lee H., ``BE-YOLOv8: Improved YOLOv8 with Attention Mechanisms for Real-Time Food and Waste Classification,'' 2025.
+\end{enumerate}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\end{document}

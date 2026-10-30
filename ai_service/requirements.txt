@@ -1,0 +1,35 @@
+# EGPP AI Microservice — Python Dependencies
+#
+# Install with:  pip install -r requirements.txt
+# Or with uv:    uv pip install -r requirements.txt
+#
+# Torch is intentionally pinned to CPU-only for container size.
+# For GPU deployment, replace the torch line with the CUDA build.
+
+# ── Web Framework ─────────────────────────────────────────────────────────────
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.12       # multipart/form-data for file uploads
+
+# ── HTTP Client ───────────────────────────────────────────────────────────────
+httpx==0.27.2                  # async HTTP for Cloudinary URL fetching
+
+# ── AI / ML ───────────────────────────────────────────────────────────────────
+# CPU-only torch — swap for CUDA build on GPU servers
+torch==2.4.1+cpu
+torchvision==0.19.1+cpu
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+transformers==4.44.2           # Hugging Face ViT model
+Pillow==10.4.0                 # Image decoding
+accelerate==0.34.2             # HF model loading optimisation
+
+# ── Pricing Model ─────────────────────────────────────────────────────────────
+scikit-learn==1.5.2            # RandomForestRegressor
+numpy==1.26.4
+
+# ── Data / Validation ─────────────────────────────────────────────────────────
+pydantic==2.8.2                # FastAPI request/response schemas
+
+# ── Observability ─────────────────────────────────────────────────────────────
+python-dotenv==1.0.1

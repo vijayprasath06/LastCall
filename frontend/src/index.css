@@ -1,0 +1,3 @@
+/* index.css — global reset, delegates all design to styles/index.css */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { margin: 0; }
